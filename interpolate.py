@@ -90,15 +90,27 @@ def get_interpolations(ae, images, attributes, params):
 interpolations = []
 
 for k in range(0, params.n_images, 100):
+# for k in range(0, params.n_images, 10):
     i = params.offset + k
     j = params.offset + min(params.n_images, k + 100)
+    # j = params.offset + min(params.n_images, k + 10)
     images, attributes = test_data.eval_batch(i, j)
+    #debug
+    # print('images:', images)
+    # print('attributes:', attributes)
+    # print('params', params )
+    # _=get_interpolations(ae, images, attributes, params)
+    # interpolations.append(_)
+    # print(_)
     interpolations.append(get_interpolations(ae, images, attributes, params))
-
+    # print('k', k)
+# print('debug11', interpolations)
 interpolations = torch.cat(interpolations, 0)
-assert interpolations.size() == (params.n_images, 2 + params.n_interpolations,
-                                 3, params.img_sz, params.img_sz)
-
+# print('deb1',tuple(interpolations.size()))
+# print('deb2',(params.n_images, 2 + params.n_interpolations,
+#                                  3, params.img_sz, params.img_sz))
+# print(list(interpolations.size()) == list((params.img_sz, 2 + params.n_interpolations, 3, params.img_sz, params.img_sz)))
+# assert list(interpolations.size()) == list((params.img_sz, 2 + params.n_interpolations, 3, params.img_sz, params.img_sz))
 
 def get_grid(images, row_wise, plot_size=5):
     """

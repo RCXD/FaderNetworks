@@ -45,7 +45,7 @@ Download the aligned and cropped CelebA dataset from http://mmlab.ie.cuhk.edu.hk
 
 ```batch
 cd data
-./preprocess.py
+./preprocess.py # python ./preprocess.py
 ```
 
 It will resize images, and create 2 files: `images_256_256.pth` and `attributes.pth`. The first one contains a tensor of size `(202599, 3, 256, 256)` containing the concatenation of all resized images. Note that you can update the image size in `preprocess.py` to work with different resolutions. The second file is a pre-processed version of the attributes.

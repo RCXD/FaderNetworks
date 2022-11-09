@@ -63,12 +63,17 @@ def load_images(params):
     attributes = torch.cat([x.unsqueeze(1) for x in attrs], 1)
     # split train / valid / test
     if params.debug:
-        train_index = 10000
-        valid_index = 15000
-        test_index = 20000
+        train_index = 0
+        valid_index = 0
+        test_index = len(images)
+        # train_index = 10000
+        # valid_index = 15000
+        # test_index = 20000
     else:
-        train_index = 162770
-        valid_index = 162770 + 19867
+        # train_index = 162770
+        train_index = 0
+        valid_index = 0
+        # valid_index = 162770 + 19867
         test_index = len(images)
     train_images = images[:train_index]
     valid_images = images[train_index:valid_index]
